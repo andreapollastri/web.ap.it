@@ -147,7 +147,7 @@
             </svg>
         </div>
         <div class="status-text">Server Up</div>
-        <div class="host-text"><strong>{{ request()->getHost() }}</strong> is not configured yet</div>
+        <div class="host-text">{{ request()->getHost() }} is not configured</div>
     </div>
 </body>
 
