@@ -1,0 +1,14 @@
+{
+    "agents": [
+        "cursor"
+    ],
+    "editors": [
+        "cursor",
+        "vscode"
+    ],
+    "guidelines": [
+        "filament/filament",
+        "filament/blueprint"
+    ],
+    "herd_mcp": true
+}
