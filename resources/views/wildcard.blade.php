@@ -85,6 +85,14 @@
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
+        .host-text {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #999;
+            margin-top: 0.5rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -139,6 +147,7 @@
             </svg>
         </div>
         <div class="status-text">Server Up</div>
+        <div class="host-text">{{ request()->getHost() }} is not configured yet.</div>
     </div>
 </body>
 
