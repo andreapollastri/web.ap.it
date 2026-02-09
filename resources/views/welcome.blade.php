@@ -6,6 +6,7 @@
     <title>Andrea Pollastri | Laravel Developer & Open-Source Enthusiast</title>
     <meta name="description" content="I've been a software developer since 2005, and I use Laravel and Filament to create awesome, scalable and secure applications.">
     <meta name="keywords" content="laravel,cloud,filament,php,mysql,redis,database,code,docker,linux,deploy,server,cybersecurity,devops,serverless,microservices,api,application,opensource,software,developer,website,ecommerce,scalable,secure">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <style>
         * {
             margin: 0;
