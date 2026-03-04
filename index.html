@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Andrea Pollastri | Laravel Developer & Open-Source Enthusiast</title>
+    <meta name="description"
+        content="I've been a software developer since 2005, and I use Laravel and Filament to create awesome, scalable and secure applications.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f2ed;
+            --surface: #edeae4;
+            --text: #18160f;
+            --soft: #7a7468;
+            --faint: #c4bfb5;
+            --rule: #dedad2;
+            --accent: #2e5c47;
+            --mono: #f0ece5;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f0e0c;
+            --surface: #171510;
+            --text: #e8e3d8;
+            --soft: #7a7468;
+            --faint: #38352e;
+            --rule: #242018;
+            --accent: #74ab8e;
+            --mono: #191714;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Syne', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        /* ── Grid shell ── */
+        .shell {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+        }
+
+        /* ── Top bar ── */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5.5rem;
+        }
+
+        .monogram {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--faint);
+            text-transform: uppercase;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+        }
+
+        .topbar-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .topbar-links a {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--soft);
+            text-decoration: none;
+            transition: color 0.18s;
+        }
+
+        .topbar-links a:hover {
+            color: var(--accent);
+        }
+
+        .toggle-btn {
+            background: none;
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .toggle-btn:hover {
+            border-color: var(--faint);
+            color: var(--text);
+        }
+
+        .toggle-btn svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .icon-moon {
+            display: none;
+        }
+
+        [data-theme="dark"] .icon-sun {
+            display: none;
+        }
+
+        [data-theme="dark"] .icon-moon {
+            display: block;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: -0.5rem;
+            right: -1rem;
+            font-size: clamp(7rem, 28vw, 12rem);
+            font-weight: 800;
+            color: var(--surface);
+            letter-spacing: -0.06em;
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            transition: color 0.25s;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.125rem;
+        }
+
+        .hero-name {
+            font-size: clamp(2.75rem, 9vw, 4.25rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            color: var(--text);
+            margin-bottom: 1.875rem;
+            text-transform: uppercase;
+        }
+
+        .hero-bio {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: var(--soft);
+            line-height: 1.8;
+            max-width: 460px;
+        }
+
+        .hero-bio a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--rule);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .hero-bio a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ── Section ── */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--faint);
+            white-space: nowrap;
+        }
+
+        .section-rule {
+            flex: 1;
+            height: 1px;
+            background: var(--rule);
+        }
+
+        /* ── Project rows ── */
+        .project-rows {
+            margin-top: 0;
+        }
+
+        .project-row {
+            display: grid;
+            grid-template-columns: 2ch 1fr auto;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 1.125rem 0;
+            border-bottom: 1px solid var(--rule);
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.18s;
+        }
+
+        .project-row:hover {
+            color: var(--accent);
+        }
+
+        .project-row:hover .proj-arrow {
+            transform: translate(3px, -3px);
+            color: var(--accent);
+        }
+
+        .project-row:hover .proj-num {
+            color: var(--accent);
+        }
+
+        .proj-num {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            color: var(--faint);
+            letter-spacing: 0.04em;
+            transition: color 0.18s;
+        }
+
+        .proj-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .proj-title {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: color 0.18s;
+        }
+
+        .project-row:hover .proj-title {
+            color: var(--accent);
+        }
+
+        .proj-url {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--faint);
+        }
+
+        .proj-arrow {
+            font-size: 1rem;
+            color: var(--faint);
+            transition: transform 0.2s, color 0.18s;
+            line-height: 1;
+        }
+
+        /* ── Footer ── */
+        .foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--rule);
+        }
+
+        .foot-copy {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--faint);
+        }
+
+        .foot-eco {
+            font-size: 0.6875rem;
+            color: var(--faint);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .foot-eco:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 480px) {
+            .shell {
+                padding: 2rem 1.25rem 5rem;
+            }
+
+            .topbar {
+                margin-bottom: 3.5rem;
+            }
+
+            .topbar-links {
+                display: none;
+            }
+
+            .foot {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+
+        <header class="topbar">
+            <span class="monogram">AP</span>
+            <div class="topbar-right">
+                <nav class="topbar-links">
+                    <a href="https://www.linkedin.com/in/andrea-pollastri" target="_blank" rel="noreferrer">LinkedIn</a>
+                    <a href="https://github.com/andreapollastri" target="_blank" rel="noreferrer">GitHub</a>
+                    <a href="https://andreapollastri.medium.com" target="_blank" rel="noreferrer">Medium</a>
+                </nav>
+                <button class="toggle-btn" id="btn" aria-label="Toggle theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4" />
+                        <line x1="12" y1="2" x2="12" y2="5" />
+                        <line x1="12" y1="19" x2="12" y2="22" />
+                        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+                        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+                        <line x1="2" y1="12" x2="5" y2="12" />
+                        <line x1="19" y1="12" x2="22" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+                        <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-bg" aria-hidden="true">AP</div>
+            <div class="hero-content">
+                <p class="hero-label">Software Developer</p>
+                <h1 class="hero-name">Andrea<br>Pollastri</h1>
+                <p class="hero-bio">
+                    I have been a software developer since 2005, using
+                    <a href="https://laravel.com" target="_blank" rel="noreferrer">Laravel</a> and
+                    <a href="https://filamentphp.com" target="_blank" rel="noreferrer">Filament</a>
+                    to create scalable and secure applications. My expertise spans team management, system
+                    administration, and cybersecurity.<br><br>
+                    I leverage AI to enhance my workflow while applying critical thinking.
+                    I've worked with creative organizations like
+                    <a href="https://wpp.com" target="_blank" rel="noreferrer">WPP</a> and tech companies such as
+                    <a href="https://docebo.com" target="_blank" rel="noreferrer">Docebo</a> and
+                    <a href="https://musement.com" target="_blank" rel="noreferrer">Musement</a>.<br><br>
+                    Beyond code, I'm a bass player and sound engineer with experience at
+                    <a href="https://star-service.it" target="_blank" rel="noreferrer">Star Service</a> and
+                    <a href="https://aironeservice.it" target="_blank" rel="noreferrer">Airone Service</a>.
+                    In my free time, I explore cities with Chiara, enjoy music, and pursue my passion for wine as an
+                    <a href="https://www.aisitalia.it" target="_blank" rel="noreferrer">AIS</a> sommelier.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-head">
+                <span class="section-label">Open source</span>
+                <div class="section-rule"></div>
+            </div>
+            <div class="project-rows">
+                <a href="https://cipi.sh" target="_blank" rel="noreferrer" class="project-row">
+                    <span class="proj-num">01</span>
+                    <span class="proj-body">
+                        <span class="proj-title">Cipi</span>
+                        <span class="proj-url">cipi.sh — Server and deployment management for Laravel
+                            applications</span>
+                    </span>
+                    <span class="proj-arrow">↗</span>
+                </a>
+                <a href="https://newsletter.web.ap.it" target="_blank" rel="noreferrer" class="project-row">
+                    <span class="proj-num">02</span>
+                    <span class="proj-body">
+                        <span class="proj-title">Newsletter</span>
+                        <span class="proj-url">newsletter.web.ap.it — Newsletter self-hosted platform</span>
+                    </span>
+                    <span class="proj-arrow">↗</span>
+                </a>
+
+                <a href="https://conn.web.ap.it" target="_blank" rel="noreferrer" class="project-row">
+                    <span class="proj-num">03</span>
+                    <span class="proj-body">
+                        <span class="proj-title">Conn</span>
+                        <span class="proj-url">conn.web.ap.it — SSH connection manager for developers</span>
+                    </span>
+                    <span class="proj-arrow">↗</span>
+                </a>
+                <a href="https://init.web.ap.it" target="_blank" rel="noreferrer" class="project-row">
+                    <span class="proj-num">04</span>
+                    <span class="proj-body">
+                        <span class="proj-title">Init</span>
+                        <span class="proj-url">init.web.ap.it — Laravel and Filament project scaffolding toolkit</span>
+                    </span>
+                    <span class="proj-arrow">↗</span>
+                </a>
+                <a href="https://127001.it" target="_blank" rel="noreferrer" class="project-row">
+                    <span class="proj-num">05</span>
+                    <span class="proj-body">
+                        <span class="proj-title">127001.it</span>
+                        <span class="proj-url">127001.it — Simple tool for developers</span>
+                    </span>
+                    <span class="proj-arrow">↗</span>
+                </a>
+            </div>
+        </section>
+
+        <footer class="foot">
+            <span class="foot-copy">© 2026 - All rights reserved</span>
+            <a href="https://www.websitecarbon.com/website/web-ap-it" target="_blank" rel="noreferrer"
+                class="foot-eco">🌱 Sustainable website</a>
+        </footer>
+
+    </div>
+    <script>
+        (function () {
+            const html = document.documentElement;
+            const btn = document.getElementById('btn');
+            const stored = localStorage.getItem('theme');
+            const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            html.setAttribute('data-theme', stored || sys);
+            btn.addEventListener('click', function () {
+                const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+            });
+        })();
+    </script>
+    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt=""
+            referrerpolicy="no-referrer-when-downgrade" /></noscript>
+</body>
+
+</html>

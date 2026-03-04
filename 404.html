@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>404 — Andrea Pollastri</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f2ed;
+            --surface: #edeae4;
+            --text: #18160f;
+            --soft: #7a7468;
+            --faint: #c4bfb5;
+            --rule: #dedad2;
+            --accent: #2e5c47;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f0e0c;
+            --surface: #171510;
+            --text: #e8e3d8;
+            --soft: #7a7468;
+            --faint: #38352e;
+            --rule: #242018;
+            --accent: #74ab8e;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Syne', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .shell {
+            max-width: 640px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Main ── */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .bg-num {
+            position: absolute;
+            top: 50%;
+            right: -1rem;
+            transform: translateY(-50%);
+            font-size: clamp(9rem, 36vw, 16rem);
+            font-weight: 800;
+            color: var(--surface);
+            letter-spacing: -0.06em;
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+            transition: color 0.25s;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .label {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.125rem;
+        }
+
+        h1 {
+            font-size: clamp(2.75rem, 9vw, 4.25rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+        }
+
+        .message {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: var(--soft);
+            line-height: 1.8;
+            max-width: 380px;
+            margin-bottom: 2.5rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--soft);
+            text-decoration: none;
+            border-bottom: 1px solid var(--rule);
+            padding-bottom: 2px;
+            transition: color 0.18s, border-color 0.18s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .back-link span {
+            transition: transform 0.2s;
+        }
+
+        .back-link:hover span {
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 480px) {
+            .shell {
+                padding: 2rem 1.25rem 4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+
+        <main class="main">
+            <div class="bg-num" aria-hidden="true">404</div>
+            <div class="content">
+                <p class="label">Error</p>
+                <h1>Page<br>Not Found</h1>
+                <p class="message">The page you're looking for doesn't exist.</p>
+                <a href="/" class="back-link">
+                    <span>←</span> Back to home
+                </a>
+            </div>
+        </main>
+
+    </div>
+    <script>
+        (function () {
+            const html = document.documentElement;
+            const stored = localStorage.getItem('theme');
+            const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            html.setAttribute('data-theme', stored || sys);
+        })();
+    </script>
+</body>
+
+</html>
